@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1 class="logo">MyPortal</h1>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h2>Welcome to MyPortal</h2>
+      <p>Connecting people and ideas through innovation and technology.</p>
+      <a href="#faq" class="btn">Learn More</a>
+    </div>
+  </section>
+
+  <!-- Image Slider -->
+  <section class="slider-section">
+    <h2>Gallery Slider</h2>
+    <div class="slider">
+      <div class="slides">
+        <img src="https://picsum.photos/id/1015/800/400" alt="Slide 1">
+        <img src="https://picsum.photos/id/1016/800/400" alt="Slide 2">
+        <img src="https://picsum.photos/id/1018/800/400" alt="Slide 3">
+      </div>
+      <button class="prev" onclick="moveSlide(-1)">❮</button>
+      <button class="next" onclick="moveSlide(1)">❯</button>
+    </div>
+  </section>
+
+  <!-- Collapsible FAQ Section -->
+  <section id="faq" class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq">
+      <button class="faq-question">What is MyPortal?</button>
+      <div class="faq-answer">
+        <p>MyPortal is a responsive and interactive portal built using HTML, CSS, and JavaScript.</p>
+      </div>
+
+      <button class="faq-question">How can I register?</button>
+      <div class="faq-answer">
+        <p>You can register using the registration page by filling in your details and submitting the form.</p>
+      </div>
+
+      <button class="faq-question">Is this portal mobile friendly?</button>
+      <div class="faq-answer">
+        <p>Yes! It’s fully responsive and adjusts beautifully on all devices.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popup Button -->
+  <section class="popup-section">
+    <button class="btn" onclick="openPopup()">Open Announcement</button>
+
+    <div id="popup" class="popup">
+      <div class="popup-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <h3>Portal Update</h3>
+        <p>We’ve added new dynamic features like FAQs, popups, and sliders!</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 MyPortal. All rights reserved.</p>
+  </footer>
+
+  <script>
+    /* ---------- SLIDER ---------- */
+    let currentSlide = 0;
+    function moveSlide(direction) {
+      const slides = document.querySelectorAll(".slides img");
+      currentSlide = (currentSlide + direction + slides.length) % slides.length;
+      document.querySelector(".slides").style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    /* ---------- FAQ COLLAPSE ---------- */
+    const faqButtons = document.querySelectorAll(".faq-question");
+    faqButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        button.classList.toggle("active");
+        const answer = button.nextElementSibling;
+        answer.style.display = answer.style.display === "block" ? "none" : "block";
+      });
+    });
+
+    /* ---------- POPUP ---------- */
+    function openPopup() {
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
+</body>
+</html>
